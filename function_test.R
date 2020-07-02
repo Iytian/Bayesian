@@ -1,7 +1,7 @@
 # loading the functions
 source("R_code_functions.R")
-compile("ModelExt_GPR_test.cpp")
-dyn.load(dynlib("ModelExt_GPR_test"))
+compile("ModelExt_GPR.cpp")
+dyn.load(dynlib("ModelExt_GPR"))
 
 ##  simulation
 # defining the hyperparameters
