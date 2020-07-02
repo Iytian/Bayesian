@@ -1,7 +1,10 @@
 # loading the functions
+require(TMB)
+require(MASS)
+
 source("R_code_functions.R")
-compile("ModelExt_GPR_test.cpp")
-dyn.load(dynlib("ModelExt_GPR_test"))
+compile("ModelExt_GPR.cpp")
+dyn.load(dynlib("ModelExt_GPR"))
 
 ##  simulation
 # defining the hyperparameters
@@ -115,6 +118,6 @@ logC_Omega <- logC_Omega[upper.tri(logC_Omega, diag = TRUE)]
 
 cond_post_test <- MakeADFun(data = list(y = y_true, Xtr = t(x), logC_cov = logc), 
                       parameters = list(lambda = lambda, logC_Omega = logC_Omega, log_nu = log(nu),
-                                        log_tau = log(tau)), DLL = "ModelExt_GPR_test")
+                                        log_tau = log(tau)), DLL = "ModelExt_GPR")
 # issue fatal error.... R terminated
 cond_post_test$simulate()
